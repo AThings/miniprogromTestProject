@@ -46,13 +46,16 @@ Page({
    */
   onShareAppMessage() {},
   handleSendRequest() {
-    instance
-      .request({
-        url: '/index/findBanner',
-        methods: 'get'
-      })
-      .then((res) => {
-        console.log(res)
-      })
+    // instance
+    //   .request({
+    //     url: '/index/findBanner',
+    //     methods: 'get'
+    //   })
+    //   .then((res) => {
+    //     console.log(res)
+    //   })
+    instance.get('/index/findBanner', { test: 111 }, { timeout: 20000 }).then((res) => {
+      console.log(res)
+    })
   }
 })

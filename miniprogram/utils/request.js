@@ -38,6 +38,46 @@ class WxRequest {
       })
     })
   }
+
+  //  get便捷方法
+  get(url, data = {}, config = {}) {
+    return this.request({
+      url,
+      data,
+      ...config,
+      methods: 'GET'
+    })
+  }
+
+  //  delete便捷方法
+  delete(url, data = {}, config = {}) {
+    return this.request({
+      url,
+      data,
+      ...config,
+      methods: 'DELETE'
+    })
+  }
+
+  //  put便捷方法
+  put(url, data = {}, config = {}) {
+    return this.request({
+      url,
+      data,
+      ...config,
+      methods: 'PUT'
+    })
+  }
+
+  //  post便捷方法
+  post(url, data = {}, config = {}) {
+    return this.request({
+      url,
+      data,
+      ...config,
+      methods: 'POST'
+    })
+  }
 }
 
 const instance = new WxRequest({
