@@ -46,6 +46,13 @@ Page({
    */
   onShareAppMessage() {},
   handleSendRequest() {
-    console.log(instance.request)
+    instance
+      .request({
+        url: '/index/findBanner',
+        methods: 'get'
+      })
+      .then((res) => {
+        console.log(res)
+      })
   }
 })
