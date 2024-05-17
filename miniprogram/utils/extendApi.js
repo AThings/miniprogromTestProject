@@ -2,7 +2,7 @@
  * 消息提示框
  * @param {*} param0 和wxwx.showToast一致
  */
-const toast = ({ title = '数据加载中...', icon = 'none', duration = 2000, mask = true } = {}) => {
+export const toast = ({ title = '数据加载中...', icon = 'none', duration = 2000, mask = true } = {}) => {
   wx.showToast({
     title,
     icon,
@@ -14,7 +14,7 @@ const toast = ({ title = '数据加载中...', icon = 'none', duration = 2000, m
  * @description 模态对话框
  * @param {*} option 和wx.showModel一致
  */
-const model = (option = {}) => {
+export const model = (option = {}) => {
   return new Promise((resolve) => {
     const defaultOptions = {
       title: '提示',

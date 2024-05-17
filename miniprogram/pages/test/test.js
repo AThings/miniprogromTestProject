@@ -1,5 +1,5 @@
 // pages/test/test.js
-import instance from '../../utils/request'
+import instance from '../../utils/http'
 Page({
   /**
    * 页面的初始数据
@@ -54,6 +54,8 @@ Page({
     //   .then((res) => {
     //     console.log(res)
     //   })
+
+    // /index/findBanner
     instance.get('/index/findBanner').then((res) => {
       console.log(res)
     })

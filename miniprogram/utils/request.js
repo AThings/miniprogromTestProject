@@ -1,6 +1,6 @@
 // 通过类来封装 会使代码更具有复用性 更方便添加新属性和方法
 
-class WxRequest {
+export default class WxRequest {
   // 实例属性 默认请求参数
   defaults = {
     // 请求基准地址
@@ -101,28 +101,3 @@ class WxRequest {
     })
   }
 }
-
-const instance = new WxRequest({
-  baseURL: 'https://gmall-prod.atguigu.cn/mall-api',
-  timeout: 15000
-})
-
-instance.interceptors.request = (config) => {
-  console.log('实例的请求拦截器')
-  return config
-}
-
-instance.interceptors.response = (response) => {
-  const { isSuccess, data } = response
-  console.log('实例的响应拦截器', response)
-  if (!isSuccess) {
-    wx.showToast({
-      title: '网络异常请重试',
-      icon: 'error'
-    })
-    return response
-  }
-  return data
-}
-
-export default instance
