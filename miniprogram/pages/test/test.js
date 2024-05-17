@@ -54,7 +54,7 @@ Page({
     //   .then((res) => {
     //     console.log(res)
     //   })
-    instance.get('/index/findBanner', { test: 111 }, { timeout: 20000 }).then((res) => {
+    instance.get('/index/findBanner').then((res) => {
       console.log(res)
     })
   }
