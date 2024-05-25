@@ -12,8 +12,7 @@
     "pages/address/list/index",
     "pages/login/login",
     "pages/settings/settings",
-    "pages/profile/profile",
-    "pages/test/test"
+    "pages/profile/profile"
   ],
   "window": {
     "backgroundTextStyle": "light",

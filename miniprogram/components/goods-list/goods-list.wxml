@@ -7,20 +7,13 @@
 
   <!-- 列表区域 -->
   <view class="goods_card_list">
-    <block wx:for="{{ 3 }}" wx:key="index">
-      <goods-card></goods-card>
+    <block wx:for="{{ list }}" wx:key="id">
+      <goods-card goodItem="{{item}}"></goods-card>
     </block>
   </view>
 
   <!-- 查看更多 -->
   <view class="goods_more">
-    <navigator
-      class="goods_more_btn"
-      url="/pages/goods/list/list"
-      hover-class="navigator-hover"
-      open-type="navigate"
-    >
-      查看更多
-    </navigator>
+    <navigator class="goods_more_btn" url="/pages/goods/list/list" hover-class="navigator-hover" open-type="navigate"> 查看更多 </navigator>
   </view>
 </view>

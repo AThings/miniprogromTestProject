@@ -1,8 +1,22 @@
+import { reqIndexData } from '../../api/index.js'
 Page({
   /**
    * 页面的初始数据
    */
-  data: {},
+  data: {
+    //   轮播图数据
+    bannerList: [],
+    //   商品导航数据
+    categoryList: [],
+    // 活动渲染区域
+    activeList: [],
+    // 人气推荐
+    hotList: [],
+    // 猜你喜欢
+    guessList: [],
+    // 是否显示骨架屏
+    loading: true
+  },
 
   /**
    * 生命周期函数--监听页面加载
@@ -21,7 +35,20 @@ Page({
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function () {},
+  onShow: function () {
+    reqIndexData().then((resArr) => {
+      //   console.log(resArr)
+      const dataList = resArr.map((item) => item.data)
+      this.setData({
+        bannerList: dataList[0],
+        categoryList: dataList[1],
+        activeList: dataList[2],
+        hotList: dataList[3],
+        guessList: dataList[4],
+        loading: false
+      })
+    })
+  },
 
   /**
    * 生命周期函数--监听页面隐藏

@@ -2,9 +2,10 @@
 import WxRequest from './request'
 import { getStorage, clearStorage } from './storage'
 import { model, toast } from './extendApi'
+import { env } from './env'
 
 const instance = new WxRequest({
-  baseURL: 'https://gmall-prod.atguigu.cn/mall-api',
+  baseURL: env.baseURL,
   timeout: 15000
 })
 

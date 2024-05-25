@@ -1,2 +1,0 @@
-<!--pages/test/test.wxml-->
-<button type="primary" plain bind:tap="handleSendRequest">测试本地数据</button>
