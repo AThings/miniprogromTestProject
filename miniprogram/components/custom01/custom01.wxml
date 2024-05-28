@@ -1,0 +1,3 @@
+<!--components/custom01/custom01.wxml-->
+<view> {{ numA }} + {{ numB }} = {{ sum }} </view>
+<button type="primary" plain bind:tap="update">更新store中的数据</button>

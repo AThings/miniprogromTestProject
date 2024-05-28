@@ -2,11 +2,7 @@
 <view class="container">
   <!-- 顶部展示图 -->
   <view class="top-show">
-    <image
-      mode="widthFix"
-      class="top-show-img"
-      src="/assets/images/banner.jpg"
-    ></image>
+    <image mode="widthFix" class="top-show-img" src="/assets/images/banner.jpg"></image>
   </view>
 
   <view class="bottom-show">
@@ -51,6 +47,7 @@
       </view>
     </view>
 
+    <custom01 />
     <!-- 关于售前售后服务面板 -->
     <view class="after-scale section">
       <view class="order-title-wrap">
