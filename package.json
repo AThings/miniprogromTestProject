@@ -9,6 +9,9 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
-    "@vant/weapp": "^1.11.5"
+    "@vant/weapp": "^1.11.5",
+    "mina-request": "^1.0.8",
+    "mobx-miniprogram": "^6.12.3",
+    "mobx-miniprogram-bindings": "^3.0.0"
   }
 }

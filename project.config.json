@@ -36,5 +36,10 @@
   },
   "appid": "wxedbb5d5ce87a9139",
   "miniprogramRoot": "miniprogram/",
-  "srcMiniprogramRoot": "miniprogram/"
+  "srcMiniprogramRoot": "miniprogram/",
+  "skeletonConfig": {
+    "global": {
+      "loading": "spin"
+    }
+  }
 }

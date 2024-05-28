@@ -25,12 +25,12 @@
             <view>
               <view class="banner--swiper-box">
                 <swiper autoplay="false" class="banner--swiper" current="0" duration="1000" indicator-active-color="#FF734C" indicator-color="rgba(0, 0, 0, .3)" interval="2000">
-                  <swiper-item class="banner--swiper-item" style="position: absolute; width: 100%; height: 100%; transform: translate(0%, 0px) translateZ(0px);">
+                  <swiper-item class="banner--swiper-item" style="position: absolute; width: 100%; height: 100%; transform: translate(0%, 0px) translateZ(0px)">
                     <navigator class="banner--navigator">
                       <image class="banner--img sk-image"></image>
                     </navigator>
                   </swiper-item>
-                  <swiper-item class="banner--swiper-item" style="position: absolute; width: 100%; height: 100%; transform: translate(100%, 0px) translateZ(0px);">
+                  <swiper-item class="banner--swiper-item" style="position: absolute; width: 100%; height: 100%; transform: translate(100%, 0px) translateZ(0px)">
                     <navigator class="banner--navigator">
                       <image class="banner--img sk-image"></image>
                     </navigator>
@@ -110,18 +110,18 @@
             <view class="adver">
               <view class="adver-left">
                 <navigator>
-                  <image class="sk-image" mode="widthFix" style="height: 218.803px;"></image>
+                  <image class="sk-image" mode="widthFix" style="height: 218.803px"></image>
                 </navigator>
               </view>
               <view class="adver-right">
                 <view>
                   <navigator>
-                    <image class="sk-image" mode="widthFix" style="height: 104.746px;"></image>
+                    <image class="sk-image" mode="widthFix" style="height: 104.746px"></image>
                   </navigator>
                 </view>
                 <view>
                   <navigator>
-                    <image class="sk-image" mode="widthFix" style="height: 104.746px;"></image>
+                    <image class="sk-image" mode="widthFix" style="height: 104.746px"></image>
                   </navigator>
                 </view>
               </view>
@@ -135,12 +135,12 @@
           <view>
             <view class="banner--swiper-box">
               <swiper autoplay="false" class="banner--swiper" current="0" duration="1000" indicator-active-color="#FF734C" indicator-color="rgba(0, 0, 0, .3)" interval="2000">
-                <swiper-item class="banner--swiper-item" style="position: absolute; width: 100%; height: 100%; transform: translate(0%, 0px) translateZ(0px);">
+                <swiper-item class="banner--swiper-item" style="position: absolute; width: 100%; height: 100%; transform: translate(0%, 0px) translateZ(0px)">
                   <navigator class="banner--navigator">
                     <image class="banner--img sk-image"></image>
                   </navigator>
                 </swiper-item>
-                <swiper-item class="banner--swiper-item" style="position: absolute; width: 100%; height: 100%; transform: translate(100%, 0px) translateZ(0px);">
+                <swiper-item class="banner--swiper-item" style="position: absolute; width: 100%; height: 100%; transform: translate(100%, 0px) translateZ(0px)">
                   <navigator class="banner--navigator">
                     <image class="banner--img sk-image"></image>
                   </navigator>
@@ -220,18 +220,18 @@
           <view class="adver">
             <view class="adver-left">
               <navigator>
-                <image class="sk-image" mode="widthFix" style="height: 218.803px;"></image>
+                <image class="sk-image" mode="widthFix" style="height: 218.803px"></image>
               </navigator>
             </view>
             <view class="adver-right">
               <view>
                 <navigator>
-                  <image class="sk-image" mode="widthFix" style="height: 104.746px;"></image>
+                  <image class="sk-image" mode="widthFix" style="height: 104.746px"></image>
                 </navigator>
               </view>
               <view>
                 <navigator>
-                  <image class="sk-image" mode="widthFix" style="height: 104.746px;"></image>
+                  <image class="sk-image" mode="widthFix" style="height: 104.746px"></image>
                 </navigator>
               </view>
             </view>
@@ -248,12 +248,12 @@
         <view is="pages/index/banner/banner">
           <view class="banner--swiper-box">
             <swiper autoplay="false" class="banner--swiper" duration="1000" indicator-active-color="#FF734C" indicator-color="rgba(0, 0, 0, .3)" interval="2000" current="0">
-              <swiper-item class="banner--swiper-item" style="position: absolute; width: 100%; height: 100%; transform: translate(0%, 0px) translateZ(0px);">
+              <swiper-item class="banner--swiper-item" style="position: absolute; width: 100%; height: 100%; transform: translate(0%, 0px) translateZ(0px)">
                 <navigator class="banner--navigator">
                   <image class="banner--img sk-image"></image>
                 </navigator>
               </swiper-item>
-              <swiper-item class="banner--swiper-item" style="position: absolute; width: 100%; height: 100%; transform: translate(100%, 0px) translateZ(0px);">
+              <swiper-item class="banner--swiper-item" style="position: absolute; width: 100%; height: 100%; transform: translate(100%, 0px) translateZ(0px)">
                 <navigator class="banner--navigator">
                   <image class="banner--img sk-image"></image>
                 </navigator>
@@ -333,18 +333,18 @@
         <view class="adver">
           <view class="adver-left">
             <navigator>
-              <image mode="widthFix" style="height: 218.803px;" class="sk-image"></image>
+              <image mode="widthFix" style="height: 218.803px" class="sk-image"></image>
             </navigator>
           </view>
           <view class="adver-right">
             <view>
               <navigator>
-                <image mode="widthFix" style="height: 104.746px;" class="sk-image"></image>
+                <image mode="widthFix" style="height: 104.746px" class="sk-image"></image>
               </navigator>
             </view>
             <view>
               <navigator>
-                <image mode="widthFix" style="height: 104.746px;" class="sk-image"></image>
+                <image mode="widthFix" style="height: 104.746px" class="sk-image"></image>
               </navigator>
             </view>
           </view>
