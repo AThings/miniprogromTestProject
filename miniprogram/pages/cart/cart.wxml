@@ -1,10 +1,10 @@
 <view>
+  <view>
+    {{ numA }} + {{ numB }} = {{ sum }}
+    <button type="primary" plain bindtap="update">更新numA numB</button>
+  </view>
   <!-- 购物车列表结构 -->
-  <view
-    wx:if="{{ cartList.length }}"
-    class="container goods-wrap"
-    bindtap="onSwipeCellPageTap"
-  >
+  <view wx:if="{{ cartList.length }}" class="container goods-wrap" bindtap="onSwipeCellPageTap">
     <view class="goods-item" wx:for="{{ cartList }}" wx:key="index">
       <van-swipe-cell class="goods-swipe" right-width="{{ 65 }}">
         <van-cell-group border="{{ false }}">
@@ -16,9 +16,7 @@
               <image class="img" src="/assets/images/floor-img.jpg" />
             </view>
             <view class="right">
-              <view class="title">
-                腾讯极光盒子4智能网络电视机顶盒6K千兆网络机顶盒4K高分辨率
-              </view>
+              <view class="title"> 腾讯极光盒子4智能网络电视机顶盒6K千兆网络机顶盒4K高分辨率 </view>
               <view class="buy">
                 <view class="price">
                   <view class="symbol">¥</view>
@@ -48,12 +46,7 @@
   </van-empty>
 
   <!-- 底部工具栏 -->
-  <van-submit-bar
-    wx:if="{{ cartList.length }}"
-    price="{{ 3050 }}"
-    button-text="去结算"
-    tip="{{ true }}"
-  >
+  <van-submit-bar wx:if="{{ cartList.length }}" price="{{ 3050 }}" button-text="去结算" tip="{{ true }}">
     <van-checkbox value="{{ true }}" checked-color="#FA4126"> 全选 </van-checkbox>
   </van-submit-bar>
 </view>

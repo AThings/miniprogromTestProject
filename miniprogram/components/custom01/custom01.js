@@ -8,34 +8,37 @@ ComponentWithStore({
   // 配置与需要使用的store进行关联
   // 数据会被注册到data中
   // 方法会被注册到methods中
-  storeBindings: {
-    store: numStore,
-    // fields、actions的数组写法
-    // fields: ['numA', 'numB', 'sum'],
-    // actions: ['update']
 
-    // fields、actions的对象写法
-    fields: {
-      // 数据也有两种写法
-      // 映射写法
-      //   numA: 'numA',
-      //   numB: 'numB',
-      //   storeSum: 'sum'
-      // 函数写法
-      numA: () => {
-        return numStore.numA
+  storeBindings: [
+    {
+      store: numStore,
+      // fields、actions的数组写法
+      // fields: ['numA', 'numB', 'sum'],
+      // actions: ['update']
+
+      // fields、actions的对象写法
+      fields: {
+        // 数据也有两种写法
+        // 映射写法
+        //   numA: 'numA',
+        //   numB: 'numB',
+        //   storeSum: 'sum'
+        // 函数写法
+        numA: () => {
+          return numStore.numA
+        },
+        numB: () => {
+          return numStore.numB
+        },
+        storeSum: () => {
+          return numStore.sum
+        }
       },
-      numB: () => {
-        return numStore.numB
-      },
-      storeSum: () => {
-        return numStore.sum
+      actions: {
+        handleUpdate: 'update'
       }
-    },
-    actions: {
-      handleUpdate: 'update'
     }
-  },
+  ],
   /**
    * 组件的属性列表
    */
