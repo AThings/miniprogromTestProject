@@ -1,0 +1,7 @@
+<!--components/custom04/custom04.wxml-->
+<view>
+  <text> computedWithComputed 组件 </text>
+  {{ a }} + {{ b }} = {{ total }}
+  <button type="primary" plain bindtap="handleUpdate">更新a 和 b</button>
+  {{ numA }} + {{ numB }} = {{ sum }}
+</view>

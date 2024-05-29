@@ -51,7 +51,12 @@
         miniprogram-store 测试代码 
         <custom01 /> 
     -->
-    <custom02 />
+
+    <!-- 
+        miniprogram-computed 测试代码
+        <custom02 /> -->
+    <custom03 />
+    <custom04 />
     <!-- 关于售前售后服务面板 -->
     <view class="after-scale section">
       <view class="order-title-wrap">

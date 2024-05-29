@@ -1,0 +1,6 @@
+<!--components/goods-card/custom03.wxml-->
+<view>
+  <text> computedWithStore 组件 </text>
+  {{ numA }} + {{ numB }} = {{ sum }} storeTotal = {{ storeTotal }}
+  <button type="primary" plain bindtap="update">更新numA 和 numB</button>
+</view>
