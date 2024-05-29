@@ -70,7 +70,8 @@
     "van-goods-action": "@vant/weapp/goods-action/index",
     "van-goods-action-icon": "@vant/weapp/goods-action-icon/index",
     "van-goods-action-button": "@vant/weapp/goods-action-button/index",
-    "custom01": "./components/custom01/custom01"
+    "custom01": "./components/custom01/custom01",
+    "custom02": "./components/custom02/custom02"
   },
   "sitemapLocation": "sitemap.json"
 }

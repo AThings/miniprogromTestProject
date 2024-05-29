@@ -1,8 +1,10 @@
 <view>
-  <view>
+  <!--
+    miniprogram-store 测试代码 
+    <view>
     {{ numA }} + {{ numB }} = {{ sum }}
     <button type="primary" plain bindtap="update">更新numA numB</button>
-  </view>
+  </view> -->
   <!-- 购物车列表结构 -->
   <view wx:if="{{ cartList.length }}" class="container goods-wrap" bindtap="onSwipeCellPageTap">
     <view class="goods-item" wx:for="{{ cartList }}" wx:key="index">

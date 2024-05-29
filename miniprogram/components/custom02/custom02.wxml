@@ -1,0 +1,5 @@
+<!--components/custom02/custom02.wxml-->
+<view>
+  {{ a }} + {{ b }} = {{ total }}
+  <button type="primary" plain bindtap="handleUpdate">更新a 和 b</button>
+</view>
