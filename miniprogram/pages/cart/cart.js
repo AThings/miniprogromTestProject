@@ -1,5 +1,7 @@
 // pages/cart/component/cart.js
+import { behaviorWithStore } from './behavir'
 Component({
+  behaviors: [behaviorWithStore],
   // 组件的属性列表
   properties: {},
 
