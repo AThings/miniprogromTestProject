@@ -3,6 +3,7 @@ import { userStore } from '../../../../stores/userStore'
 export const behavior = BehaviorWithStore({
   storeBindings: {
     store: userStore,
-    fields: ['token', 'userInfo']
+    fields: ['token', 'userInfo'],
+    actions: ['setUserInfo']
   }
 })
