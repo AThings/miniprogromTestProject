@@ -66,7 +66,7 @@ export default class WxRequest {
           mask: true
         })
     }
-    console.log(options, 'options')
+
     return new Promise((resolve, reject) => {
       if (options.method === 'UPLOAD') {
         wx.uploadFile({

@@ -8,11 +8,8 @@
     "pages/goods/detail/detail",
     "pages/order/detail/detail",
     "pages/order/list/list",
-    "pages/address/add/index",
-    "pages/address/list/index",
     "pages/login/login",
-    "pages/settings/settings",
-    "pages/profile/profile"
+    "pages/settings/settings"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -75,5 +72,20 @@
     "custom03": "./components/custom03/custom03",
     "custom04": "./components/custom04/custom04"
   },
-  "sitemapLocation": "sitemap.json"
+  "sitemapLocation": "sitemap.json",
+
+  "////zhushi////": "////分包配置/////",
+  "subPackages": [
+    {
+      "root": "modules/settingModule",
+      "name": "settingModule",
+      "pages": ["pages/address/add/index", "pages/address/list/index", "pages/profile/profile"]
+    }
+  ],
+  "preloadRule": {
+    "pages/settings/settings": {
+      "network": "all",
+      "packages": ["settingModule"]
+    }
+  }
 }

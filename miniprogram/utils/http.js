@@ -10,8 +10,6 @@ const instance = new WxRequest({
 })
 
 instance.interceptors.request = (config) => {
-  console.log('实例的请求拦截器')
-
   //   判断token
   const token = getStorage('token')
   if (token) {
@@ -23,7 +21,7 @@ instance.interceptors.request = (config) => {
 
 instance.interceptors.response = async (response) => {
   const { isSuccess, data } = response
-  console.log('实例的响应拦截器', response)
+
   if (!isSuccess) {
     wx.showToast({
       title: '网络异常请重试',
