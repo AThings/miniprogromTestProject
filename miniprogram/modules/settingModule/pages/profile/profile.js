@@ -1,5 +1,5 @@
 // pages/profile/profile.js
-
+import { behavior } from './behavior'
 Page({
   // 页面的初始数据
   data: {
@@ -18,5 +18,6 @@ Page({
     this.setData({
       isShowPopup: false
     })
-  }
+  },
+  behaviors: [behavior]
 })
