@@ -7,7 +7,7 @@
 
   <view class="bottom-show">
     <!-- 未登录面板 -->
-    <view class="user-container section" bindtap="toLoginPage">
+    <view wx:if="{{ !token }}" class="user-container section" bindtap="toLoginPage">
       <view class="avatar-container">
         <image src="/assets/images/avatar.png"></image>
         <view class="no-login">
@@ -18,17 +18,17 @@
     </view>
 
     <!-- 登录以后得面板 -->
-    <!-- <view class="user-container section">
+    <view wx:else class="user-container section">
       <view class="avatar-container">
-        <image src="/assets/images/avatar.png"></image>
+        <image src="{{ userInfo.headimgurl }}"></image>
         <view class="no-login">
-          <text class="ellipsis">用户昵称</text>
+          <text class="ellipsis">{{ userInfo.nickname }}</text>
         </view>
       </view>
       <view class="setting">
         <navigator url="/pages/settings/settings"> 设置 </navigator>
       </view>
-    </view> -->
+    </view>
 
     <!-- 订单面板 -->
     <view class="order section">
@@ -39,7 +39,7 @@
 
       <view class="order-content-wrap">
         <view class="order-content-item" wx:for="{{ initpanel }}">
-          <navigator url="{{ item.url }}">
+          <navigator url="{{ token ? item.url : '/pages/login/login' }}">
             <view class="iconfont {{ item.iconfont }}"></view>
             <text>{{ item.title }}</text>
           </navigator>
@@ -55,8 +55,10 @@
     <!-- 
         miniprogram-computed 测试代码
         <custom02 /> -->
-    <custom03 />
-    <custom04 />
+    <!-- 
+        兼容componentWithStore和componentWithComputed的测试代码
+        <custom03 />
+    <custom04 /> -->
     <!-- 关于售前售后服务面板 -->
     <view class="after-scale section">
       <view class="order-title-wrap">
