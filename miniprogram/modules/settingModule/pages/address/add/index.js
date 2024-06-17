@@ -1,3 +1,5 @@
+// 引入核心类
+const QQMapWX = require('../../../../../libs/qqmap-wx-jssdk.min.js')
 Page({
   // 页面的初始数据
   data: {
@@ -25,6 +27,14 @@ Page({
     isDefault: 0,
     // 是否默认用于绑定的属性
     isDefaultBoolean: false
+  },
+
+  onLoad() {
+    //   实例化
+    this.qqmapsdk = new QQMapWX({
+      // 自己申请的key
+      key: 'NXVBZ-KV4RJ-EMNF5-XSCVI-UVV2O-CLF76'
+    })
   },
 
   // 保存收货地址
@@ -111,5 +121,45 @@ Page({
         title: '您已拒绝授权获取地理位置'
       })
     }
+  },
+  //   使用chooseLocation来获取地址
+  handleUserChooseLocation() {
+    wx.chooseLocation().then((res) => {
+      console.log(res, 'chooseLocation')
+
+      //   纬度 经度 搜索的地点
+      const { latitude, longitude, name } = res
+      //   使用 reverseGeocoder 方法进行逆地址解析
+      this.qqmapsdk.reverseGeocoder({
+        location: {
+          latitude,
+          longitude
+        },
+        success: (res) => {
+          console.log(res, 'reverseGeocoder')
+          //   获取省市区编码、省、市、区
+          const { adcode, province, city, district } = res.result.ad_info
+
+          //   获取街道门牌(可能为空)
+          const { street, street_number } = res.result.address_component
+
+          //   获取标准地址
+          const { standard_address } = res.result.formatted_addresses
+          this.setData({
+            provinceName: province,
+            provinceCode: adcode.substring(0, 2) + '0000',
+            cityName: city,
+            cityCode: adcode.substring(0, 4) + '00',
+            districtName: district,
+            districtCode: district && adcode,
+            address: street + street_number + name,
+            fullAddress: standard_address + name
+          })
+        },
+        complete: (complete) => {
+          console.log(complete, 'complete')
+        }
+      })
+    })
   }
 })

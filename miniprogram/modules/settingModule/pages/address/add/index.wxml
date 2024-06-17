@@ -25,7 +25,7 @@
           <view wx:else class="placeholder"> 请选择收货人所在地区</view>
         </picker>
 
-        <view class="location" bindtap="onLocation">
+        <view class="location" bindtap="handleUserChooseLocation">
           <van-icon name="location-o" color="#777" />
           <text>定位</text>
         </view>
