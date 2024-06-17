@@ -12,9 +12,9 @@ export const toast = ({ title = '数据加载中...', icon = 'none', duration = 
 }
 /**
  * @description 模态对话框
- * @param {*} option 和wx.showModel一致
+ * @param {*} option 和wx.showModal一致
  */
-export const model = (option = {}) => {
+export const modal = (option = {}) => {
   return new Promise((resolve) => {
     const defaultOptions = {
       title: '提示',
@@ -38,4 +38,4 @@ export const model = (option = {}) => {
   })
 }
 wx.toast = toast
-wx.model = model
+wx.modal = modal

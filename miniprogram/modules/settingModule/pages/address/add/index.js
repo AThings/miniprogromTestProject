@@ -57,17 +57,59 @@ Page({
       districtCode
     })
   },
-  async onShow() {
-    const a = await wx.getSetting()
-    console.log(a, 'a')
-  },
   //   获取用户地理信息
   async onLocation() {
-    //   获取精度维度
-    const res = await wx.getLocation()
-    console.log(res, 'res')
+    //   获取用户的所有授权信息
+    // 只包含所有已经请求的信息
+    // 已授权 true 拒绝授权 false 没有请求 undefined
+    const { authSetting } = await wx.getSetting()
+    const scopeUserLocation = authSetting['scope.userLocation']
+
+    if (scopeUserLocation === false) {
+      //   用户已经拒绝过授权
+
+      const modalRes = await wx.modal({
+        title: '授权提示',
+        content: '需要获取地理位置信息，请确认是否授权'
+      })
+      if (modalRes) {
+        //   允许授权
+
+        // 手动打开授权页面
+        const { authSetting } = await wx.openSetting()
+        if (authSetting['scope.userLocation']) {
+          this.handleGetUserLocation()
+        } else {
+          wx.toast({
+            title: '授权失败'
+          })
+        }
+      } else {
+        //   拒绝授权
+        wx.toast({
+          title: '您已拒绝授权获取地理位置'
+        })
+      }
+    } else {
+      // 已经同意授权 或 没有请求授权
+      this.handleGetUserLocation()
+    }
+
     // 在地图中选择地址
     // const ress = await wx.chooseLocation()
     // console.log(ress, 'ress')
+  },
+  async handleGetUserLocation() {
+    // 请求授权
+    try {
+      //   获取经纬度
+      // 用户拒绝授权之后 不会在再弹出授权弹窗
+      const res = await wx.getLocation()
+      console.log(res, 'res')
+    } catch (error) {
+      wx.toast({
+        title: '您已拒绝授权获取地理位置'
+      })
+    }
   }
 })

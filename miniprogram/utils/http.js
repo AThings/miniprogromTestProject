@@ -1,7 +1,7 @@
 // WxRequest 实例
 import WxRequest from './request'
 import { getStorage, clearStorage } from './storage'
-import { model, toast } from './extendApi'
+import { modal, toast } from './extendApi'
 import { env } from './env'
 
 const instance = new WxRequest({
@@ -37,7 +37,7 @@ instance.interceptors.response = async (response) => {
       return data
     // 208 没有token或token失效 需要重新登录
     case 208:
-      const res = await model({
+      const res = await modal({
         content: '鉴权失败，请重新登陆',
         showCancel: false
       })
