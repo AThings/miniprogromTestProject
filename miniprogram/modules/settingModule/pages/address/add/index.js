@@ -60,5 +60,14 @@ Page({
   async onShow() {
     const a = await wx.getSetting()
     console.log(a, 'a')
+  },
+  //   获取用户地理信息
+  async onLocation() {
+    //   获取精度维度
+    const res = await wx.getLocation()
+    console.log(res, 'res')
+    // 在地图中选择地址
+    // const ress = await wx.chooseLocation()
+    // console.log(ress, 'ress')
   }
 })
