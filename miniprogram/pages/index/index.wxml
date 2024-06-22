@@ -15,19 +15,19 @@
     <!-- 广告区域 -->
     <view class="adver">
       <view class="adver-left">
-        <navigator url="/pages/goods/list/list?category2Id={{ activeList[0].category2Id }}">
+        <navigator url="/modules/goodModule/pages/goods/list/list?category2Id={{ activeList[0].category2Id }}">
           <image src="{{ activeList[0].imageUrl }}" mode="widthFix" />
         </navigator>
       </view>
 
       <view class="adver-right">
         <view>
-          <navigator url="/pages/goods/list/list?category2Id={{ activeList[1].category2Id }}">
+          <navigator url="/modules/goodModule/pages/goods/list/list?category2Id={{ activeList[1].category2Id }}">
             <image src="{{ activeList[1].imageUrl }}" mode="widthFix" />
           </navigator>
         </view>
         <view>
-          <navigator url="/pages/goods/list/list?category2Id={{ activeList[2].category2Id }}">
+          <navigator url="/modules/goodModule/pages/goods/list/list?category2Id={{ activeList[2].category2Id }}">
             <image src="{{ activeList[2].imageUrl }}" mode="widthFix" />
           </navigator>
         </view>

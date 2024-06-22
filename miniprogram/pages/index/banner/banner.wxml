@@ -4,7 +4,7 @@
   <swiper autoplay class="swiper" indicator-active-color="#FF734C" interval="2000" duration="1000" indicator-color="rgba(0, 0, 0, .3)" bind:change="handleSwiperChange">
     <block wx:for="{{ bannerList }}" wx:key="index">
       <swiper-item class="swiper-item">
-        <navigator class="navigator" url="/pages/goods/detail/detail?goodsId={{ item.id }}">
+        <navigator class="navigator" url="/modules/goodModule/pages/goods/detail/detail?goodsId={{ item.id }}" hover-class="none">
           <image class="img" src="{{ item.imageUrl || item }}"></image>
         </navigator>
       </swiper-item>

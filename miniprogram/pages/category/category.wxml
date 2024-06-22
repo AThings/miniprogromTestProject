@@ -19,7 +19,7 @@
       <!-- 二级分类 -->
       <view class="test">
         <view wx:for="{{ secondaryList }}" wx:key="id" class="right-view-item">
-          <navigator class="navigator" url="/pages/goods/list/list?category2Id={{ item.id }}">
+          <navigator class="navigator" url="/modules/goodModule/pages/goods/list/list?category2Id={{ item.id }}">
             <image class="" src="{{ item.imageUrl }}"></image>
             <text class="goods_item_name">{{ item.name }}</text>
           </navigator>

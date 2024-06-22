@@ -14,6 +14,6 @@
 
   <!-- 查看更多 -->
   <view class="goods_more">
-    <navigator class="goods_more_btn" url="/pages/goods/list/list" hover-class="navigator-hover" open-type="navigate"> 查看更多 </navigator>
+    <navigator class="goods_more_btn" url="/modules/goodModule/pages/goods/list/list" hover-class="navigator-hover" open-type="navigate"> 查看更多 </navigator>
   </view>
 </view>
