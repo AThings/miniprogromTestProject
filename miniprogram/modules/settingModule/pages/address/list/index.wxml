@@ -1,9 +1,9 @@
 <!--pages/address/list/index.wxml-->
 
-<view class="container address-list">
+<view class="container address-list" bindtap="closeAllSwipeCell">
   <view class="list-warpper" wx:if="{{ addressList.length }}">
     <view wx:for="{{ addressList }}" wx:key="index" class="list-item">
-      <van-swipe-cell right-width="{{ 65 }}">
+      <van-swipe-cell right-width="{{ 65 }}" id="swipe-cell-{{item.id}}" bindopen="swipeCellOpen" bindclick="closeAllSwipeCell">
         <van-cell-group border="{{ false }}">
           <view class="list-item-box">
             <view class="info">
@@ -22,7 +22,7 @@
           </view>
         </van-cell-group>
         <!-- <van-icon name="delete" size="22px" color="#999" /> -->
-        <view slot="right" class="van-swipe-cell__right" data-id="{{item.id}}" data-index="{{index}}" bindtap="handleDeleteAddress">
+        <view slot="right" class="van-swipe-cell__right" data-id="{{item.id}}" bindtap="handleDeleteAddress">
           <text>删除</text>
         </view>
       </van-swipe-cell>

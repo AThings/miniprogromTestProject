@@ -1,6 +1,8 @@
 // pages/address/list/index.js
 import { reqGetAddressList, reqDeleteAddress } from '../../../api/address'
+import { swipeCell } from '../../../../../behaviors/swipeCell'
 Page({
+  behaviors: [swipeCell],
   // 页面的初始数据
   data: {
     addressList: []
