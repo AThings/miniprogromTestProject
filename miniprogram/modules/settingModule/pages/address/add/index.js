@@ -38,17 +38,6 @@ Page({
       key: 'NXVBZ-KV4RJ-EMNF5-XSCVI-UVV2O-CLF76'
     })
   },
-  //   保存前
-  beforeSaveAddrssForm(event) {
-    this.handleValidator()
-      .then(() => {
-        console.log('beforeSaveAddrssForm')
-        // this.saveAddrssForm(event)
-      })
-      .catch((err) => {
-        console.log(err, 'err')
-      })
-  },
   // 保存收货地址
   saveAddrssForm(event) {
     const { provinceName, cityName, districtName, address } = this.data
@@ -57,11 +46,19 @@ Page({
       fullAddress: provinceName + cityName + districtName + address,
       isDefault: this.data.isDefaultBoolean ? 1 : 0
     }
-    this.setData({
-      isDefault: this.data.isDefaultBoolean ? 1 : 0,
-      fullAddress
-    })
-    console.log(params)
+
+    this.validatorParams(params)
+  },
+  //   验证参数
+  validatorParams(params) {
+    this.handleValidator(params)
+      .then((valid) => {
+        if (!valid) return
+        console.log(params, '成功')
+      })
+      .catch((err) => {
+        console.log(err, 'err')
+      })
   },
 
   // 省市区选择
@@ -175,23 +172,22 @@ Page({
     })
   },
   //   表单验证
-  handleValidator() {
+  handleValidator(data) {
+    //   收货人正则
+    const nameRegExp = '^[a-zA-Z\\d\\u4e00-\\u9fa5]+$'
+    // 电话号码正则
+    const phoneReg = '^1(?:3\\d|4[4-9]|5[0-35-9]|6[67]|7[0-8]|8\\d|9\\d)\\d{8}$'
     //   定义验证规则
     const rules = {
       // key 验证规则的名字 和验证的数据保持一致
       name: [
         {
           required: true,
-          message: 'name不能为空'
+          message: '收货人姓名不能为空'
         },
         {
-          type: 'string',
-          message: 'name  不是字符串'
-        },
-        {
-          min: 2,
-          max: 3,
-          message: '名字最少2个字 最多三个字'
+          pattern: nameRegExp,
+          message: '收货人姓名不合法'
         }
         // 正则验证
         // {
@@ -204,16 +200,23 @@ Page({
         // }
       ],
       phone: [
-        // {
-        //   type: 'number',
-        //   message: '手机号码不是数字'
-        // },
         {
-          min: 11,
-          max: 11,
-          message: '请输入正确的手机号码'
+          required: true,
+          message: '收货人手机号码不能为空'
+        },
+        {
+          pattern: phoneReg,
+          message: '收货人手机号码不合法'
         }
-      ]
+      ],
+      provinceName: {
+        required: true,
+        message: '请输入所在地区'
+      },
+      address: {
+        required: true,
+        message: '请输入详细地址'
+      }
     }
     //   传入规则对构造函数实例化
     const validInstance = new Schema(rules)
@@ -221,18 +224,17 @@ Page({
     return new Promise((reslove, reject) => {
       // 验证的实例方法
       // 第一个参数 要验证的数据 第二个参数 回调参数
-      validInstance.validate(this.data, (errors, fields) => {
+      validInstance.validate(data, (errors, fields) => {
         // errors 验证成功时 erroes是null 失败时是一个错误信息数组
 
         // fileds 是一个对象 key是验证失败的属性 value是验证失败的规则的数组
         if (errors) {
-          console.log('验证失败')
-          console.log(errors, 'errors')
-          console.log(fields)
-          reject('验证失败')
+          wx.toast({
+            title: errors[0].message
+          })
+          reslove({ valid: false })
         } else {
-          console.log('验证成功')
-          reslove('验证成功')
+          reslove({ valid: true })
         }
       })
     })
