@@ -1,5 +1,7 @@
 // 引入核心类
 const QQMapWX = require('../../../../../libs/qqmap-wx-jssdk.min.js')
+
+import Schema from 'async-validator'
 Page({
   // 页面的初始数据
   data: {
@@ -36,7 +38,17 @@ Page({
       key: 'NXVBZ-KV4RJ-EMNF5-XSCVI-UVV2O-CLF76'
     })
   },
-
+  //   保存前
+  beforeSaveAddrssForm(event) {
+    this.handleValidator()
+      .then(() => {
+        console.log('beforeSaveAddrssForm')
+        // this.saveAddrssForm(event)
+      })
+      .catch((err) => {
+        console.log(err, 'err')
+      })
+  },
   // 保存收货地址
   saveAddrssForm(event) {
     const { provinceName, cityName, districtName, address } = this.data
@@ -158,6 +170,69 @@ Page({
         },
         complete: (complete) => {
           console.log(complete, 'complete')
+        }
+      })
+    })
+  },
+  //   表单验证
+  handleValidator() {
+    //   定义验证规则
+    const rules = {
+      // key 验证规则的名字 和验证的数据保持一致
+      name: [
+        {
+          required: true,
+          message: 'name不能为空'
+        },
+        {
+          type: 'string',
+          message: 'name  不是字符串'
+        },
+        {
+          min: 2,
+          max: 3,
+          message: '名字最少2个字 最多三个字'
+        }
+        // 正则验证
+        // {
+        //   pattern: '',
+        //   message: ''
+        // }
+        // 自定义验证规则
+        // {
+        //   validator: () => {}
+        // }
+      ],
+      phone: [
+        // {
+        //   type: 'number',
+        //   message: '手机号码不是数字'
+        // },
+        {
+          min: 11,
+          max: 11,
+          message: '请输入正确的手机号码'
+        }
+      ]
+    }
+    //   传入规则对构造函数实例化
+    const validInstance = new Schema(rules)
+
+    return new Promise((reslove, reject) => {
+      // 验证的实例方法
+      // 第一个参数 要验证的数据 第二个参数 回调参数
+      validInstance.validate(this.data, (errors, fields) => {
+        // errors 验证成功时 erroes是null 失败时是一个错误信息数组
+
+        // fileds 是一个对象 key是验证失败的属性 value是验证失败的规则的数组
+        if (errors) {
+          console.log('验证失败')
+          console.log(errors, 'errors')
+          console.log(fields)
+          reject('验证失败')
+        } else {
+          console.log('验证成功')
+          reslove('验证成功')
         }
       })
     })

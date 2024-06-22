@@ -10,6 +10,7 @@
   "description": "",
   "dependencies": {
     "@vant/weapp": "^1.11.5",
+    "async-validator": "^4.2.5",
     "mina-request": "^1.0.8",
     "miniprogram-computed": "^4.4.0",
     "mobx-miniprogram": "^6.12.3",
