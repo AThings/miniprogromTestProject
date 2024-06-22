@@ -2,9 +2,13 @@
 const QQMapWX = require('../../../../../libs/qqmap-wx-jssdk.min.js')
 
 import Schema from 'async-validator'
+
+import { reqAddUserAddress, reqGetAddressDetail, reqUpdateAddress } from '../../../api/address'
 Page({
   // 页面的初始数据
   data: {
+    //   地址id
+    id: '',
     // 收货人
     name: '',
     // 手机号码
@@ -30,13 +34,24 @@ Page({
     // 是否默认用于绑定的属性
     isDefaultBoolean: false
   },
-
-  onLoad() {
+  onLoad(option) {
+    const { id } = option
     //   实例化
     this.qqmapsdk = new QQMapWX({
       // 自己申请的key
       key: 'NXVBZ-KV4RJ-EMNF5-XSCVI-UVV2O-CLF76'
     })
+
+    if (id) {
+      this.setData({
+        id
+      })
+      this.getAddressDetail(id)
+
+      wx.setNavigationBarTitle({
+        title: '更新收货地址'
+      })
+    }
   },
   // 保存收货地址
   saveAddrssForm(event) {
@@ -46,19 +61,36 @@ Page({
       fullAddress: provinceName + cityName + districtName + address,
       isDefault: this.data.isDefaultBoolean ? 1 : 0
     }
-
     this.validatorParams(params)
   },
   //   验证参数
   validatorParams(params) {
-    this.handleValidator(params)
-      .then((valid) => {
-        if (!valid) return
-        console.log(params, '成功')
-      })
-      .catch((err) => {
-        console.log(err, 'err')
-      })
+    this.handleValidator(params).then(async (valid) => {
+      if (!valid) return
+
+      let usedAPI = null
+      let title = ''
+      if (this.data.id) {
+        usedAPI = reqUpdateAddress
+        title = '更新收货地址成功!'
+      } else {
+        usedAPI = reqAddUserAddress
+        title = '新增收货地址成功!'
+      }
+      console.log(params, 'usedAPI')
+      const res = await usedAPI(params)
+      if (res.code === 200) {
+        wx.navigateBack({
+          success: () => {
+            setTimeout(() => {
+              wx.toast({
+                title
+              })
+            }, 100)
+          }
+        })
+      }
+    })
   },
 
   // 省市区选择
@@ -237,6 +269,27 @@ Page({
           reslove({ valid: true })
         }
       })
+    })
+  },
+  //   查询地址详情
+  getAddressDetail(id) {
+    reqGetAddressDetail(id).then((res) => {
+      const { code, data } = res
+      if (code === 200) {
+        const { name, phone, provinceName, provinceCode, cityName, cityCode, districtName, districtCode, address, isDefault } = data
+        this.setData({
+          name,
+          phone,
+          provinceName,
+          provinceCode,
+          cityName,
+          cityCode,
+          districtName,
+          districtCode,
+          address,
+          isDefaultBoolean: isDefault === 1
+        })
+      }
     })
   }
 })

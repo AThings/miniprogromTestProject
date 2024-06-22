@@ -8,23 +8,21 @@
           <view class="list-item-box">
             <view class="info">
               <view class="user-info">
-                <text>测试用户</text>
-                <text>176****5678</text>
-                <text class="default-tag">默认</text>
+                <text>{{ item.name }}</text>
+                <text>{{ item.phone }}</text>
+                <text wx:if="{{ item.isDefault === 1 }}" class="default-tag">默认</text>
               </view>
 
-              <view class="address-info">
-                甘肃省甘南藏族自治州碌曲县松日鼎盛大厦0层
-              </view>
+              <view class="address-info"> {{ item.fullAddress }} </view>
             </view>
 
-            <view class="editBtn" bindtap="toEdit">
+            <view class="editBtn" data-id="{{item.id}}" bindtap="toEdit">
               <van-icon name="edit" size="22px" color="#999" />
             </view>
           </view>
         </van-cell-group>
         <!-- <van-icon name="delete" size="22px" color="#999" /> -->
-        <view slot="right" class="van-swipe-cell__right">
+        <view slot="right" class="van-swipe-cell__right" data-id="{{item.id}}" data-index="{{index}}" bindtap="handleDeleteAddress">
           <text>删除</text>
         </view>
       </van-swipe-cell>
@@ -35,9 +33,7 @@
 
   <view class="footer">
     <view class="btn">
-      <navigator url="/modules/settingModule/pages/address/add/index">
-        新增地址
-      </navigator>
+      <navigator url="/modules/settingModule/pages/address/add/index"> 新增地址 </navigator>
     </view>
   </view>
 </view>

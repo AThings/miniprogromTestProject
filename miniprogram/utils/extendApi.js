@@ -3,6 +3,7 @@
  * @param {*} param0 和wxwx.showToast一致
  */
 export const toast = ({ title = '数据加载中...', icon = 'none', duration = 2000, mask = true } = {}) => {
+  console.log(title, 'toast')
   wx.showToast({
     title,
     icon,

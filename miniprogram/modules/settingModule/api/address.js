@@ -11,7 +11,7 @@ export const reqAddUserAddress = (data, config) => http.post('/userAddress/save'
  * @description 获取收获地址列表
  * @param {*} data
  */
-export const regGetAddressList = (data) => http.get('/userAddress/findUserAddress', data)
+export const reqGetAddressList = (data) => http.get('/userAddress/findUserAddress', data)
 
 /**
  * @description 查询地址详情
