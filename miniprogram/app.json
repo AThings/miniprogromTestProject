@@ -71,7 +71,6 @@
     "custom04": "./components/custom04/custom04"
   },
   "sitemapLocation": "sitemap.json",
-
   "////zhushi////": "////分包配置/////",
   "subPackages": [
     {

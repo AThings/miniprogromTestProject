@@ -2,7 +2,7 @@
 // 在使用componentWithComputed 中使用store
 import { ComponentWithComputed } from 'miniprogram-computed'
 
-// 使用componentWithComputed 旧版方法
+// 使用componentWithStore 旧版方法
 import { storeBindingsBehavior } from 'mobx-miniprogram-bindings'
 import { numStore } from '../../stores/number'
 
