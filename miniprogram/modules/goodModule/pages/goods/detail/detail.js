@@ -6,20 +6,24 @@ Page({
     goodsInfo: {}, // 商品详情
     show: false, // 控制加入购物车和立即购买弹框的显示
     count: 1, // 商品购买数量，默认是 1
-    blessing: '' // 祝福语
+    blessing: '', // 祝福语
+    // 0代表加入购物车 1代表立即购买
+    buyNow: 0
   },
 
   // 加入购物车
   handleAddcart() {
     this.setData({
-      show: true
+      show: true,
+      buyNow: 0
     })
   },
 
   // 立即购买
   handeGotoBuy() {
     this.setData({
-      show: true
+      show: true,
+      buyNow: 1
     })
   },
 
