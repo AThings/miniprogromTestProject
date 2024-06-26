@@ -1,24 +1,22 @@
 <view class="container goods-detail">
   <!-- 商品大图 -->
   <view class="banner-img">
-    <image class="img" src="/assets/images/floor-img.jpg" />
+    <image class="img" src="{{ goodsInfo.imageUrl }}" bind:tap="handlePreviewImage" />
   </view>
 
   <!-- 商品的基本信息 -->
   <view class="content">
     <view class="price">
-      <view class="price-num">¥299</view>
-      <view class="price-origin-num">¥399</view>
+      <view class="price-num">¥{{ goodsInfo.price }}</view>
+      <view class="price-origin-num">¥{{ goodsInfo.marketPrice }}</view>
     </view>
-    <view class="title">亲爱的/情人节网红款/19枝亲爱的/情人节网红款</view>
-    <view class="desc">用最温暖的最有情的心意，用最温暖的最有情的心意</view>
+    <view class="title">{{ goodsInfo.name }}</view>
+    <view class="desc">{{ goodsInfo.floralLanguage }}</view>
   </view>
 
   <!-- 商品的详细信息 -->
   <view class="detail">
-    <image class="img" mode="widthFix" src="/assets/images/floor-img.jpg" />
-    <image class="img" mode="widthFix" src="/assets/images/floor-img.jpg" />
-    <image class="img" mode="widthFix" src="/assets/images/floor-img.jpg" />
+    <image wx:for="{{goodsInfo.detailList}}" wx:key="index" class="img" mode="widthFix" src="{{ item }}" />
   </view>
 
   <!-- 商品的底部商品导航 -->
@@ -29,12 +27,7 @@
     <navigator url="/pages/cart/cart" open-type="switchTab">
       <van-goods-action-icon icon="cart-o" text="购物车" info="{{ allCount }}" />
     </navigator>
-    <van-goods-action-icon
-      open-type="contact"
-      icon="chat-o"
-      text="客服"
-      bind:click="onClickIcon"
-    />
+    <van-goods-action-icon open-type="contact" icon="chat-o" text="客服" bind:click="onClickIcon" />
     <van-goods-action-button text="加入购物车" type="warning" bindtap="handleAddcart" />
     <van-goods-action-button text="立即购买" bindtap="handeGotoBuy" />
   </van-goods-action>
@@ -47,18 +40,18 @@
       <view class="goods-item">
         <!-- 需要购买的商品图片 -->
         <view class="mid">
-          <image class="img" src="/assets/images/floor-img.jpg" />
+          <image class="img" src="{{ goodsInfo.imageUrl }}" />
         </view>
 
         <!-- 商品基本信息 -->
         <view class="right">
           <!-- 商品名字 -->
-          <view class="title"> 亲爱的/情人节网红款/19枝 </view>
+          <view class="title"> {{ goodsInfo.name }} </view>
           <!-- 商品价格 -->
           <view class="buy">
             <view class="price">
               <view class="symbol">¥</view>
-              <view class="num">100</view>
+              <view class="num">{{ goodsInfo.price }}</view>
             </view>
 
             <!-- 步进器组件控制购买数量 -->
