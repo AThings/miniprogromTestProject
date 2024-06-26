@@ -1,7 +1,7 @@
 //
 import { BehaviorWithStore } from 'mobx-miniprogram-bindings'
-import { numStore } from '../../stores/number'
-import { cloneStore } from '../../stores/cloneStore'
+import { numStore } from '@/stores/number'
+import { cloneStore } from '@/stores/cloneStore'
 export const behaviorWithStore = BehaviorWithStore({
   //   如果一个页面需要引用多个store 需要将storeBindings改造为数组
   storeBindings: [

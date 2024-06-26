@@ -1,6 +1,6 @@
-import { reqCategoryData } from '../../api/category'
+import { reqCategoryData } from '@/api/category'
 import { ComponentWithStore } from 'mobx-miniprogram-bindings'
-import { numStore } from '../../stores/number'
+import { numStore } from '@/stores/number'
 ComponentWithStore({
   storeBindings: {
     store: numStore,

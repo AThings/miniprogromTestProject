@@ -1,5 +1,5 @@
 // 引入核心类
-const QQMapWX = require('../../../../../libs/qqmap-wx-jssdk.min.js')
+const QQMapWX = require('@/libs/qqmap-wx-jssdk.min.js')
 
 import Schema from 'async-validator'
 

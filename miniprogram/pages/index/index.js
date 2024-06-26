@@ -1,4 +1,4 @@
-import { reqIndexData } from '../../api/index.js'
+import { reqIndexData } from '@/api/index.js'
 Page({
   /**
    * 页面的初始数据

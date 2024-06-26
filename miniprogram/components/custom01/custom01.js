@@ -3,7 +3,7 @@
 // 再将component替换为componentWithStore方法
 import { ComponentWithStore } from 'mobx-miniprogram-bindings'
 
-import { numStore } from '../../stores/number'
+import { numStore } from '@/stores/number'
 ComponentWithStore({
   // 配置与需要使用的store进行关联
   // 数据会被注册到data中

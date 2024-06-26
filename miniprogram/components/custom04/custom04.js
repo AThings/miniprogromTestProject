@@ -4,7 +4,7 @@ import { ComponentWithComputed } from 'miniprogram-computed'
 
 // 使用componentWithStore 旧版方法
 import { storeBindingsBehavior } from 'mobx-miniprogram-bindings'
-import { numStore } from '../../stores/number'
+import { numStore } from '@/stores/number'
 
 ComponentWithComputed({
   behaviors: [storeBindingsBehavior],

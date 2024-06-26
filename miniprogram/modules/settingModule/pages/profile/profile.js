@@ -1,8 +1,8 @@
 // pages/profile/profile.js
 import { behavior } from './behavior'
 import { reqFileUpload, reqUpdateUserInfo } from '../../api/profile'
-import { getStorage, setStorage } from '../../../../utils/storage'
-import { toast } from '../../../../utils/extendApi'
+import { getStorage, setStorage } from '@/utils/storage'
+import { toast } from '@/utils/extendApi'
 Page({
   // 页面的初始数据
   data: {
