@@ -31,7 +31,16 @@
                   <view class="num">{{ item.price }}</view>
                 </view>
                 <view class="buy-btn">
-                  <van-stepper value="{{ item.count }}" />
+                  <van-stepper
+                    value="{{ item.count }}"
+                    min="1"
+                    max="200"
+                    integer
+                    data-id="{{ item.goodsId }}"
+                    data-index="{{ index }}"
+                    data-oldbuynum="{{ item.count }}"
+                    bind:change="changBuyNum"
+                  />
                 </view>
               </view>
             </view>

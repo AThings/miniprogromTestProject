@@ -22,7 +22,7 @@ import { userStore } from '@/stores/userStore'
 const computedBehavior = require('miniprogram-computed').behavior
 
 import { cloneDeep } from 'lodash' // 深克隆
-import { reqCartList, reqUpdateChecked, reqCheckAllStatus } from '@/api/cart'
+import { reqCartList, reqUpdateChecked, reqCheckAllStatus, reqAddCart } from '@/api/cart'
 
 ComponentWithStore({
   behaviors: [computedBehavior],
@@ -100,6 +100,44 @@ ComponentWithStore({
           newCartList.forEach((item) => (item.isChecked = isChecked))
           this.setData({
             cartList: newCartList
+          })
+        }
+      })
+    },
+    /**
+     * @description 更新物品数量
+     */
+    changBuyNum(event) {
+      const reg = /^([1-9]|[1-9]\d|1\d{2}|200)$/
+
+      //   如果数字大于200 重置为200
+      const newBuyNum = event.detail > 200 ? 200 : event.detail
+
+      const { id, index } = event.target.dataset
+      const oldbuynum = Number(event.target.dataset.oldbuynum)
+      //   验证newBuyNow 不合法将数值重置
+      if (!reg.test(newBuyNum)) {
+        this.setData({
+          [`cartList[${index}].count`]: oldbuynum
+        })
+        return
+      }
+
+      //   数量未变 return回去
+      if (newBuyNum === oldbuynum) {
+        return
+      }
+      //   合法 计算差值
+      const digNum = newBuyNum - oldbuynum
+
+      reqAddCart({
+        goodsId: id,
+        count: digNum
+      }).then((res) => {
+        if (res.code === 200) {
+          this.setData({
+            [`cartList[${index}].count`]: oldbuynum + digNum,
+            [`cartList[${index}].isChecked`]: 1
           })
         }
       })
