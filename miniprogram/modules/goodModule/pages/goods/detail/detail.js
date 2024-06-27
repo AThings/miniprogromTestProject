@@ -2,7 +2,7 @@
 import { reqGoodsInfo } from '../../api/goods'
 
 import { userBehavior } from '@/behaviors/userBehavior'
-import { reqAddCart } from '@/api/cart'
+import { reqAddCart, reqCartList } from '@/api/cart'
 Page({
   behaviors: [userBehavior],
   // 页面的初始数据
@@ -12,7 +12,8 @@ Page({
     count: 1, // 商品购买数量，默认是 1
     blessing: '', // 祝福语
     // 0代表加入购物车 1代表立即购买
-    buyNow: 0
+    buyNow: 0,
+    allCount: ''
   },
 
   // 加入购物车
@@ -46,6 +47,8 @@ Page({
     this.goodsId = options.goodsId
 
     this.getGoodDetail()
+
+    this.getCartCount()
   },
   //   查询商品详情
   getGoodDetail() {
@@ -83,6 +86,9 @@ Page({
           wx.toast({
             title: '加入购物车成功'
           })
+
+          this.getCartCount()
+
           this.onClose()
         }
       })
@@ -91,5 +97,20 @@ Page({
         url: `/pages/order/detail/detail?goodsId=${goodsId}&blessing=${blessing}`
       })
     }
+  },
+  //   获取购物车数量
+  getCartCount() {
+    //   判断是否登录
+    if (!this.data.token) return
+    reqCartList().then((res) => {
+      if (res.data && res.data.length !== 0) {
+        let allCount = 0
+        allCount = res.data.reduce((total, item) => total + item.count, 0)
+
+        this.setData({
+          allCount: allCount > 99 ? '99+' : allCount.toString()
+        })
+      }
+    })
   }
 })
