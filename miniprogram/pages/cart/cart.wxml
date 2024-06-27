@@ -1,4 +1,4 @@
-<view>
+<view bind:tap="closeAllSwipeCell">
   <!--
     miniprogram-store 测试代码 
     <view>
@@ -8,7 +8,7 @@
   <!-- 购物车列表结构 -->
   <view wx:if="{{ token && cartList.length }}" class="container goods-wrap" bindtap="onSwipeCellPageTap">
     <view class="goods-item" wx:for="{{ cartList }}" wx:key="goodsId">
-      <van-swipe-cell class="goods-swipe" right-width="{{ 65 }}">
+      <van-swipe-cell id="swipe-cell-{{item.goodsId}}" class="goods-swipe" right-width="{{ 65 }}" bindopen="swipeCellOpen" bindclick="closeAllSwipeCell">
         <van-cell-group border="{{ false }}">
           <view class="goods-info">
             <view class="left">
@@ -46,7 +46,7 @@
             </view>
           </view>
         </van-cell-group>
-        <view slot="right" class="van-swipe-cell__right">删除</view>
+        <view slot="right" class="van-swipe-cell__right" bind:tap="handleDelGoods" data-id="{{ item.goodsId }}" data-index="{{ index }}">删除</view>
       </van-swipe-cell>
     </view>
   </view>
@@ -62,8 +62,8 @@
     </navigator>
   </van-empty>
 
-  <!-- 底部工具栏 -->
-  <van-submit-bar wx:if="{{ cartList.length }}" price="{{ 3050 }}" button-text="去结算" tip="{{ true }}">
+  <!-- 底部工具栏 价格的单位为分 -->
+  <van-submit-bar wx:if="{{ cartList.length }}" price="{{ totalPrice * 100 }}" button-text="去结算" tip="{{ true }}">
     <van-checkbox value="{{ selectAllStatus }}" checked-color="#FA4126" bind:change="handleUpdateAllStatus"> 全选 </van-checkbox>
   </van-submit-bar>
 </view>

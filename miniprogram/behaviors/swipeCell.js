@@ -4,7 +4,7 @@ export const swipeCell = Behavior({
   },
   methods: {
     swipeCellOpen(event) {
-      const id = event.current.id
+      const id = event.target.id
 
       const instance = this.selectComponent(`#${id}`)
       this.data.swipeCellQueue.push(instance)

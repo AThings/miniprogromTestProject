@@ -20,15 +20,16 @@ import { ComponentWithStore } from 'mobx-miniprogram-bindings'
 import { userStore } from '@/stores/userStore'
 
 const computedBehavior = require('miniprogram-computed').behavior
+import { swipeCell } from '@/behaviors/swipeCell'
 
 import { cloneDeep } from 'lodash' // 深克隆
-import { reqCartList, reqUpdateChecked, reqCheckAllStatus, reqAddCart } from '@/api/cart'
+import { reqCartList, reqUpdateChecked, reqCheckAllStatus, reqAddCart, reqDelCartGoods } from '@/api/cart'
 
 // 引入防抖方法
 import { debounce } from 'miniprogram-licia'
 
 ComponentWithStore({
-  behaviors: [computedBehavior],
+  behaviors: [computedBehavior, swipeCell],
   storeBindings: {
     store: userStore,
     fields: ['token']
@@ -43,6 +44,16 @@ ComponentWithStore({
   computed: {
     selectAllStatus(data) {
       return data.cartList.length !== 0 && data.cartList.every((item) => item.isChecked === 1)
+    },
+    totalPrice(data) {
+      let totalPrice = 0
+
+      data.cartList.forEach((item) => {
+        if (item.isChecked === 1) {
+          totalPrice += item.price * item.count
+        }
+      })
+      return totalPrice
     }
   },
 
@@ -50,6 +61,9 @@ ComponentWithStore({
   methods: {
     onShow() {
       this.afterPageShow()
+    },
+    onHide() {
+      this.closeAllSwipeCell()
     },
     // 页面展示后的逻辑
     afterPageShow() {
@@ -144,6 +158,30 @@ ComponentWithStore({
           })
         }
       })
-    }, 500)
+    }, 500),
+    /**
+     * @description 删除购物车商品
+     */
+    handleDelGoods(event) {
+      wx.modal({
+        content: '确定要删除该商品吗？'
+      }).then((res) => {
+        if (res) {
+          const { id, index } = event.target.dataset
+          reqDelCartGoods(id).then((res) => {
+            if (res.code === 200) {
+              wx.toast({
+                title: '删除成功'
+              })
+              const newCartList = this.data.cartList
+              newCartList.splice(index, 1)
+              this.setData({
+                cartList: newCartList
+              })
+            }
+          })
+        }
+      })
+    }
   }
 })
