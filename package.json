@@ -14,6 +14,7 @@
     "lodash": "^4.17.21",
     "mina-request": "^1.0.8",
     "miniprogram-computed": "^4.4.0",
+    "miniprogram-licia": "^1.41.0",
     "mobx-miniprogram": "^6.12.3",
     "mobx-miniprogram-bindings": "^3.0.0"
   }

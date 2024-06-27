@@ -24,6 +24,9 @@ const computedBehavior = require('miniprogram-computed').behavior
 import { cloneDeep } from 'lodash' // 深克隆
 import { reqCartList, reqUpdateChecked, reqCheckAllStatus, reqAddCart } from '@/api/cart'
 
+// 引入防抖方法
+import { debounce } from 'miniprogram-licia'
+
 ComponentWithStore({
   behaviors: [computedBehavior],
   storeBindings: {
@@ -107,7 +110,7 @@ ComponentWithStore({
     /**
      * @description 更新物品数量
      */
-    changBuyNum(event) {
+    changBuyNum: debounce(function (event) {
       const reg = /^([1-9]|[1-9]\d|1\d{2}|200)$/
 
       //   如果数字大于200 重置为200
@@ -141,6 +144,6 @@ ComponentWithStore({
           })
         }
       })
-    }
+    }, 500)
   }
 })
