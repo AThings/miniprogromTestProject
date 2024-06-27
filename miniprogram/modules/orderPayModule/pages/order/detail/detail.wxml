@@ -2,26 +2,23 @@
 <view class="container order">
   <view class="address-card">
     <!-- 添加收货地址 -->
-    <!-- <view class="add-address"  bindtap="toAddress">
+    <view wx:if="{{ !orderAddress || !orderAddress.id }}" class="add-address" bindtap="toAddress">
       <van-icon size="22px" name="add" />
       <view>添加收货地址</view>
-    </view> -->
+    </view>
 
-    <view class="order-address detail-flex">
+    <view wx:else class="order-address detail-flex">
       <view class="address-content">
-        <view class="title">甘肃省 甘南藏族自治州 碌曲县</view>
+        <view class="title">{{ orderAddress.fullAddress }}</view>
         <!-- <view class="detail">松日鼎盛大厦0层0号</view> -->
         <view class="info detail-flex">
-          <text>测试</text>
-          <text>130839991443</text>
+          <text>{{ orderAddress.name }}</text>
+          <text>{{ orderAddress.phone }}</text>
         </view>
       </view>
 
       <view class="select-address">
-        <navigator
-          class="navigator"
-          url="/modules/settingModule/pages/address/list/index"
-        >
+        <navigator class="navigator" url="/modules/settingModule/pages/address/list/index">
           <van-icon color="#bbb" name="arrow" size="22px" />
         </navigator>
       </view>
@@ -33,13 +30,7 @@
   <view class="order-info">
     <van-cell-group class="group">
       <!-- 订购人姓名 -->
-      <van-field
-        label-class="filed-label"
-        model:value="{{ buyName }}"
-        label="订购人姓名："
-        placeholder="订购人的姓名"
-        placeholder-style="color: #969799"
-      />
+      <van-field label-class="filed-label" model:value="{{ buyName }}" label="订购人姓名：" placeholder="订购人的姓名" placeholder-style="color: #969799" />
 
       <!-- 订购人手机号 -->
       <van-field
@@ -54,13 +45,7 @@
       />
 
       <!-- 期望送达日期 -->
-      <van-cell
-        label-class="filed-label"
-        title="期望送达日期："
-        is-link
-        value="{{ deliveryDate }}"
-        bind:click="onShowDateTimerPopUp"
-      />
+      <van-cell label-class="filed-label" title="期望送达日期：" is-link value="{{ deliveryDate }}" bind:click="onShowDateTimerPopUp" />
 
       <van-cell title="订单备注：" border="{{ false }}" use-label-slot>
         <textarea
@@ -111,18 +96,7 @@
     <viwe class="right">提交订单</viwe>
   </view>
 
-  <van-popup
-    show="{{ show }}"
-    round
-    position="bottom"
-    custom-style="height: 50%"
-    bind:close="onCancelTimePicker"
-  >
-    <van-datetime-picker
-      type="date"
-      min-date="{{ minDate }}"
-      bind:confirm="onConfirmTimerPicker"
-      bind:cancel="onCancelTimePicker"
-    />
+  <van-popup show="{{ show }}" round position="bottom" custom-style="height: 50%" bind:close="onCancelTimePicker">
+    <van-datetime-picker type="date" min-date="{{ minDate }}" bind:confirm="onConfirmTimerPicker" bind:cancel="onCancelTimePicker" />
   </van-popup>
 </view>

@@ -1,3 +1,4 @@
+import { reqOrderAddress } from '@/api/orderPay'
 Page({
   data: {
     buyName: '', // 订购人姓名
@@ -6,7 +7,9 @@ Page({
     blessing: '', // 祝福语
     show: false, // 期望送达日期弹框
     minDate: new Date().getTime(),
-    currentDate: new Date().getTime()
+    currentDate: new Date().getTime(),
+    // 收货地址
+    orderAddress: {}
   },
 
   // 选择期望送达日期
@@ -37,5 +40,19 @@ Page({
     wx.navigateTo({
       url: '/modules/settingModule/pages/address/list/index'
     })
+  },
+  //   获取收货地址
+  getAddress() {
+    reqOrderAddress().then((res) => {
+      const { code, data } = res
+      if (code === 200) {
+        this.setData({
+          orderAddress: data
+        })
+      }
+    })
+  },
+  onShow() {
+    this.getAddress()
   }
 })
