@@ -63,7 +63,7 @@
   </van-empty>
 
   <!-- 底部工具栏 价格的单位为分 -->
-  <van-submit-bar wx:if="{{ cartList.length }}" price="{{ totalPrice * 100 }}" button-text="去结算" tip="{{ true }}">
+  <van-submit-bar wx:if="{{ cartList.length }}" price="{{ totalPrice * 100 }}" button-text="去结算" tip="{{ true }}" bind:submit="toOrder">
     <van-checkbox value="{{ selectAllStatus }}" checked-color="#FA4126" bind:change="handleUpdateAllStatus"> 全选 </van-checkbox>
   </van-submit-bar>
 </view>

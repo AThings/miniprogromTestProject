@@ -182,6 +182,22 @@ ComponentWithStore({
           })
         }
       })
+    },
+    /**
+     * @description 跳转到订单结算页面
+     */
+    toOrder() {
+      // 判断是否勾选了商品 没有勾选就不跳转
+      if (this.data.totalPrice === 0) {
+        wx.toast({
+          title: '请选择商品'
+        })
+        return
+      }
+
+      wx.navigateTo({
+        url: '/modules/orderPayModule/pages/order/detail/detail'
+      })
     }
   }
 })

@@ -94,7 +94,7 @@ Page({
       })
     } else {
       wx.navigateTo({
-        url: `/pages/order/detail/detail?goodsId=${goodsId}&blessing=${blessing}`
+        url: `/modules/orderPayModule/pages/order/detail/detail?goodsId=${goodsId}&blessing=${blessing}`
       })
     }
   },
