@@ -12,7 +12,7 @@ Page({
   },
   // 去编辑页面
   toEdit(event) {
-    const id = event?.currentTarget?.dataset?.id
+    const id = event?.target?.dataset?.id
     wx.navigateTo({
       url: '/modules/settingModule/pages/address/add/index?id=' + id
     })
@@ -28,7 +28,7 @@ Page({
   },
   //   删除地址
   handleDeleteAddress(event) {
-    const id = event?.currentTarget?.dataset?.id
+    const id = event?.target?.dataset?.id
     wx.modal({
       content: '确定要删除该地址吗?'
     }).then((res) => {
