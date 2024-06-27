@@ -1,6 +1,10 @@
 // pages/goods/detail/index.js
 import { reqGoodsInfo } from '../../api/goods'
+
+import { userBehavior } from '@/behaviors/userBehavior'
+import { reqAddCart } from '@/api/cart'
 Page({
+  behaviors: [userBehavior],
   // 页面的初始数据
   data: {
     goodsInfo: {}, // 商品详情
@@ -34,10 +38,11 @@ Page({
 
   // 监听是否更改了购买数量
   onChangeGoodsCount(event) {
-    console.log(event.detail)
+    this.setData({
+      count: Number(event.detail)
+    })
   },
   onLoad(options) {
-    console.log(options)
     this.goodsId = options.goodsId
 
     this.getGoodDetail()
@@ -56,5 +61,35 @@ Page({
     wx.previewImage({
       urls: this.data.goodsInfo.detailList
     })
+  },
+  //  加入购物车 立即购买点击确定
+  handleSubmitOrder() {
+    const { token, count, blessing, buyNow } = this.data
+    const goodsId = this.goodsId
+
+    if (!token) {
+      wx.navigateTo({
+        url: '/pages/login/login'
+      })
+      return
+    }
+
+    if (buyNow === 0) {
+      reqAddCart({
+        goodsId,
+        count
+      }).then((res) => {
+        if (res.code === 200) {
+          wx.toast({
+            title: '加入购物车成功'
+          })
+          this.onClose()
+        }
+      })
+    } else {
+      wx.navigateTo({
+        url: `/pages/order/detail/detail?goodsId=${goodsId}&blessing=${blessing}`
+      })
+    }
   }
 })

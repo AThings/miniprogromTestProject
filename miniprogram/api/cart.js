@@ -5,7 +5,7 @@ import http from '@/utils/http'
  * @param { Object } param { goodsId: 商品ID, count 购买数量, blessing 祝福语 }
  */
 export const reqAddCart = ({ goodsId, count, ...data }) => {
-  return http.get(`/cart/addToCart/${goodsId}/${count}`.data)
+  return http.get(`/cart/addToCart/${goodsId}/${count}`, data)
 }
 
 /**
