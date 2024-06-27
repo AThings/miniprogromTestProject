@@ -14,12 +14,18 @@
 //   // 组件的方法列表
 //   methods: {}
 // })
+
 import { ComponentWithStore } from 'mobx-miniprogram-bindings'
 
 import { userStore } from '@/stores/userStore'
 
-import { reqCartList, reqUpdateChecked } from '@/api/cart'
+const computedBehavior = require('miniprogram-computed').behavior
+
+import { cloneDeep } from 'lodash' // 深克隆
+import { reqCartList, reqUpdateChecked, reqCheckAllStatus } from '@/api/cart'
+
 ComponentWithStore({
+  behaviors: [computedBehavior],
   storeBindings: {
     store: userStore,
     fields: ['token']
@@ -29,6 +35,12 @@ ComponentWithStore({
   data: {
     cartList: [],
     emptyDes: '还没有添加商品，快去添加吧～'
+  },
+
+  computed: {
+    selectAllStatus(data) {
+      return data.cartList.length !== 0 && data.cartList.every((item) => item.isChecked === 1)
+    }
   },
 
   // 组件的方法列表
@@ -71,6 +83,23 @@ ComponentWithStore({
           //   this.afterPageShow()
           this.setData({
             [`cartList[${index}].isChecked`]: isChecked
+          })
+        }
+      })
+    },
+    /**
+     * @description 全选 全不选
+     */
+    handleUpdateAllStatus(event) {
+      const { detail } = event
+      const isChecked = detail ? 1 : 0
+      reqCheckAllStatus(isChecked).then((res) => {
+        if (res.code === 200) {
+          //   this.afterPageShow()
+          const newCartList = cloneDeep(this.data.cartList)
+          newCartList.forEach((item) => (item.isChecked = isChecked))
+          this.setData({
+            cartList: newCartList
           })
         }
       })

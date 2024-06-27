@@ -30,7 +30,7 @@ export const reqUpdateChecked = (goodsId, isChecked) => {
  * @param {*} isCHecked 全选与全不选状态， 0 取消全选 1 进行全选
  * @return Promise
  */
-export const reqCheckAllStatus = (isCHecked) => {
+export const reqCheckAllStatus = (isChecked) => {
   return http.get(`/cart/checkAllCart/${isChecked}`)
 }
 
