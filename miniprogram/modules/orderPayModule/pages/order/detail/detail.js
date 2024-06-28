@@ -1,4 +1,4 @@
-import { reqOrderAddress, reqOrderInfo, reqBuyNowGoods } from '@/api/orderPay'
+import { reqOrderAddress, reqOrderInfo, reqBuyNowGoods, reqSubmitOrder } from '@/api/orderPay'
 
 // 格式化时间方法
 import { formatTime } from '@/utils/formatTime'
@@ -137,6 +137,13 @@ Page({
 
     this.handleValidtor(params).then(({ valid }) => {
       if (valid) {
+        //   创建平台订单
+        reqSubmitOrder(params).then((res) => {
+          // 创建成功后 将订单编号挂载到前端页面
+          if (res.code === 200) {
+            this.orderNo = res.data
+          }
+        })
       }
     })
   },
