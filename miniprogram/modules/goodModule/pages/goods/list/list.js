@@ -85,5 +85,12 @@ Page({
 
     // 重新获取列表页面
     this.getGoodList()
-  }
+  },
+
+  /**
+   * 用户点击右上角分享
+   */
+  onShareAppMessage: function () {},
+  //   分享到朋友圈
+  onShareTimeline() {}
 })

@@ -113,5 +113,19 @@ Page({
         })
       }
     })
-  }
+  },
+
+  /**
+   * 用户点击右上角分享
+   */
+  onShareAppMessage: function () {
+    //   自定义信息
+    return {
+      title: '所有的砰然心动都是你',
+      path: '/page/index/index',
+      imageUrl: '../../../../assets/images/love.jpg'
+    }
+  },
+  //   分享到朋友圈
+  onShareTimeline() {}
 })
