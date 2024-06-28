@@ -1,5 +1,5 @@
 // pages/order/list/index.js
-import { reqOrderList } from '@/api/orderPay'
+import { reqOrderList } from '../../..//api/orderPay'
 Page({
   // 页面的初始数据
   data: {

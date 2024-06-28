@@ -1,7 +1,7 @@
-import { reqOrderAddress, reqOrderInfo, reqBuyNowGoods, reqSubmitOrder, reqPrePayInfo, reqPayStatus } from '@/api/orderPay'
+import { reqOrderAddress, reqOrderInfo, reqBuyNowGoods, reqSubmitOrder, reqPrePayInfo, reqPayStatus } from '../../..//api/orderPay'
 
 // 格式化时间方法
-import { formatTime } from '@/utils/formatTime'
+import { formatTime } from '../../../utils/formatTime'
 
 import Schema from 'async-validator'
 // 导入防抖函数
