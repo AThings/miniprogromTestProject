@@ -3,26 +3,26 @@
   <view class="order-list" wx:if="{{ orderList.length > 0 }}">
     <view class="order-item" wx:for="{{ orderList }}" wx:key="index">
       <view class="order-item-header list-flex">
-        <view class="orderno">订单号<text class="no">1679246470200</text></view>
-        <view class="order-status">已支付</view>
+        <view class="orderno">订单号<text class="no">{{ item.orderNo }}</text></view>
+        <view class="order-status">{{ item.orderStatus === 1 ? '已支付':'未支付' }}</view>
       </view>
-      <view class="goods-item list-flex">
+      <view wx:for="{{ item.orderDetailList }}" wx:for-item="detailItem" class="goods-item list-flex">
         <view class="left">
-          <image src="/assets/images/floor-img.jpg" mode="widthFix" class="img" />
+          <image src="{{ detailItem.imageUrl }}" mode="widthFix" class="img" />
         </view>
         <view class="mid">
-          <view class="goods-name">不变的承诺</view>
-          <view class="goods-blessing">不变的承诺</view>
+          <view class="goods-name">{{ detailItem.name }}</view>
+          <view class="goods-blessing">{{ detailItem.blessing }}</view>
         </view>
         <view class="right">
-          <view class="goods-price">¥100</view>
-          <view class="goods-count">x1</view>
+          <view class="goods-price">¥{{ detailItem.price }}</view>
+          <view class="goods-count">x{{ detailItem.count }}</view>
         </view>
       </view>
       <view class="order-item-footer">
         <view class="total-amount list-flex">
           <text class="text">实付</text>
-          <text class="price"><text>¥</text> 666</text>
+          <text class="price"><text>¥</text> {{ item.totalAmount }}</text>
         </view>
       </view>
     </view>

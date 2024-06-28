@@ -1,4 +1,4 @@
-import { reqOrderAddress, reqOrderInfo, reqBuyNowGoods, reqSubmitOrder } from '@/api/orderPay'
+import { reqOrderAddress, reqOrderInfo, reqBuyNowGoods, reqSubmitOrder, reqPrePayInfo, reqPayStatus } from '@/api/orderPay'
 
 // 格式化时间方法
 import { formatTime } from '@/utils/formatTime'
@@ -129,23 +129,64 @@ Page({
     const params = {
       buyName,
       buyPhone,
-      cartList: orderInfo.cartList,
+      cartList: orderInfo.cartVoList,
       deliveryDate,
       remarke: blessing,
       userAddressId: orderAddress.id
     }
 
     this.handleValidtor(params).then(({ valid }) => {
+      console.log(params, 'params')
       if (valid) {
         //   创建平台订单
         reqSubmitOrder(params).then((res) => {
           // 创建成功后 将订单编号挂载到前端页面
           if (res.code === 200) {
             this.orderNo = res.data
+
+            // 获取预付单信息，参数
+            this.advanvrPay()
           }
         })
       }
     })
+  },
+  //   获取预付单信息 支付参数
+  async advanvrPay() {
+    try {
+      const payParams = await reqPrePayInfo(this.orderNo)
+      console.log(payParams)
+      if (payParams.code === 200) {
+        // 调用wx.requestPayment发起微信支付
+        const payInfo = await wx.requestPayment(payParams.data)
+        console.log(payInfo)
+
+        // 获取支付结果
+        if (payInfo.errMsg === 'requestPayment:ok') {
+          // 查询支付状态
+          const payStatus = await reqPayStatus(this.orderNo)
+
+          if (payStatus.code === 200) {
+            // 支付成功
+            wx.redirectTo({
+              url: '/modules/orderPayModule/pages/order/list/list',
+              success: () => {
+                wx.toast({
+                  title: '支付成功',
+                  icon: 'success'
+                })
+              }
+            })
+          }
+        }
+      }
+    } catch (error) {
+      console.log(error)
+      wx.toast({
+        title: '支付失败，请联系客服',
+        icon: 'error'
+      })
+    }
   },
   //   表单验证
   handleValidtor(data) {

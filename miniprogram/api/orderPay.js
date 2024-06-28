@@ -50,3 +50,7 @@ export const reqPrePayInfo = (orderNo) => {
 export const reqPayStatus = (orderNo) => {
   return http.get(`/webChat/queryPayStatus/${orderNo}`)
 }
+
+export const reqOrderList = (page, limit) => {
+  return http.get(`/order/order/${page}/${limit}`)
+}
