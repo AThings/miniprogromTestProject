@@ -4,6 +4,8 @@ import { reqOrderAddress, reqOrderInfo, reqBuyNowGoods, reqSubmitOrder, reqPrePa
 import { formatTime } from '@/utils/formatTime'
 
 import Schema from 'async-validator'
+// 导入防抖函数
+import { debounce } from 'miniprogram-licia'
 const app = getApp()
 Page({
   data: {
@@ -123,7 +125,7 @@ Page({
   /**
    * @description 处理提交订单
    */
-  submitOrder() {
+  submitOrder: debounce(function () {
     const { buyName, buyPhone, deliveryDate, blessing, orderAddress, orderInfo } = this.data
 
     const params = {
@@ -150,7 +152,7 @@ Page({
         })
       }
     })
-  },
+  }, 500),
   //   获取预付单信息 支付参数
   async advanvrPay() {
     try {

@@ -5,6 +5,9 @@ import { setStorage } from '../../utils/storage'
 
 import { ComponentWithStore } from 'mobx-miniprogram-bindings'
 import { userStore } from '../../stores/userStore'
+
+// 导入防抖函数
+import { debounce } from 'miniprogram-licia'
 ComponentWithStore({
   storeBindings: {
     store: userStore,
@@ -13,7 +16,7 @@ ComponentWithStore({
   },
   methods: {
     // 进行授权登录
-    login() {
+    login: debounce(function () {
       //   获取临时登录凭证
       wx.login({
         success: ({ code }) => {
@@ -38,7 +41,7 @@ ComponentWithStore({
           }
         }
       })
-    },
+    }, 500),
     // 获取用户信息
     getUserInfo() {
       reqUserInfo().then((res) => {
