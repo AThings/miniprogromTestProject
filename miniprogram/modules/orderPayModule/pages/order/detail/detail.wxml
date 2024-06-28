@@ -18,7 +18,7 @@
       </view>
 
       <view class="select-address">
-        <navigator class="navigator" url="/modules/settingModule/pages/address/list/index">
+        <navigator class="navigator" url="/modules/settingModule/pages/address/list/index?fromOrder=1">
           <van-icon color="#bbb" name="arrow" size="22px" />
         </navigator>
       </view>

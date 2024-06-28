@@ -1,4 +1,5 @@
 import { reqOrderAddress } from '@/api/orderPay'
+const app = getApp()
 Page({
   data: {
     buyName: '', // 订购人姓名
@@ -53,6 +54,21 @@ Page({
     })
   },
   onShow() {
+    /**
+     * 获取全局对象中存不存在addres 存在则使用该地址
+     */
+    if (app.globalData.address.id) {
+      this.setData({
+        orderAddress: app.globalData.address
+      })
+      return
+    }
+
+    // 不存在时通过接口获取
     this.getAddress()
+  },
+  onUnload() {
+    //   页面卸载时 删除全局对象的地址
+    app.globalData.address = {}
   }
 })

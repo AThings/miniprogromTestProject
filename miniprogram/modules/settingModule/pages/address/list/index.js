@@ -1,6 +1,8 @@
 // pages/address/list/index.js
 import { reqGetAddressList, reqDeleteAddress } from '../../../api/address'
 import { swipeCell } from '@/behaviors/swipeCell'
+
+const app = getApp()
 Page({
   behaviors: [swipeCell],
   // 页面的初始数据
@@ -10,9 +12,17 @@ Page({
   onShow() {
     this.getAddressList()
   },
+  onLoad(options) {
+    /**
+     * 代表是否从订单页面过来
+     */
+    if (options.fromOrder) {
+      this.data.fromOrder = options.fromOrder
+    }
+  },
   // 去编辑页面
   toEdit(event) {
-    const id = event?.target?.dataset?.id
+    const id = event?.currentTarget?.dataset?.id
     wx.navigateTo({
       url: '/modules/settingModule/pages/address/add/index?id=' + id
     })
@@ -42,5 +52,22 @@ Page({
         }
       })
     })
+  },
+  /**
+   * @description 选择更改地址
+   */
+  changeAddress(event) {
+    if (this.data.fromOrder !== '1') {
+      return
+    }
+
+    const { addressid } = event.currentTarget.dataset
+    if (addressid) {
+      const selectAddress = this.data.addressList.find((item) => item.id === addressid)
+
+      app.globalData.address = selectAddress
+
+      wx.navigateBack()
+    }
   }
 })
