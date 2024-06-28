@@ -80,7 +80,8 @@ Page({
     if (buyNow === 0) {
       reqAddCart({
         goodsId,
-        count
+        count,
+        blessing
       }).then((res) => {
         if (res.code === 200) {
           wx.toast({
